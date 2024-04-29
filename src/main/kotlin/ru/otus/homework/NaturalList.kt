@@ -45,12 +45,7 @@ class NaturalList(n: Int) : List<Int> {
      * Returns true if list contains all numbers in the collection
      */
     override fun containsAll(elements: Collection<Int>): Boolean {
-        val containsAll = if (elements == this) {
-            return true
-        } else {
-            return false
-        }
-        return containsAll
+        return this.containsAll(elements)
     }
 
     override fun toString(): String {
@@ -62,12 +57,15 @@ class NaturalList(n: Int) : List<Int> {
      * Например, NaturalList(5) должен быть равен listOf(1,2,3,4,5)
      */
     override fun equals(other: Any?): Boolean {
-        val equalsResult = if (other == this) {
-            return true
-        } else {
-            return false
+        if (this === other) return true
+        if (other !is List<*>) return false
+        if (this.size != other.size) return false
+        for (i in indices) {
+            if (this[i] != other[i]) {
+                return false
+            }
         }
-        return equalsResult
+        return true
     }
 
     /**
